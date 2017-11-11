@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script defer src="js/jquery-2.2.4.min.js"></script>
+  <script defer src="js/main.js"></script>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <title>Triva Challenge</title>
+</head>
+
+<body>
+  <form>
+    <fieldset>
+      <h2>Trivia Question</h2>
+      <p>
+        <label for="pick-category">Category</label>
+        <select name="category" id="pick-category">
+        <option id="category">Pick Category</option>
+        <option id="animals" value="27">Animals</option>
+        <option id="art" value="25">Art</option>
+        <option id="books" value="10">Books</option>
+        <option id="celebrities" value="26">Celebrities</option>
+        <option id="computers" value="18">Computers</option>
+        <option id="film" value="11">Film</option>
+        <option id="general-Knowledge" value="9">General Knowledge</option>
+        <option id="geography" value="22">Geography</option>
+        <option id="history" value="23">History</option>
+        <option id="music" value="12">Music</option>
+        <option id="mythology" value="20">Mythology</option>
+        <option id="politics" value="24">Politics</option>
+        <option id="science-nature" value="17">Science & Nature</option>
+        <option id="sports" value="21">Sports</option>
+        <option id="television" value="14">Television</option>
+      </select>
+      </p>
+      <p>
+        <label for="pick-difficulty">Difficulty</label>
+        <select name="difficulty" id="pick-difficulty">
+        <option value="difficulty">Pick Difficulty</option>
+        <option value="easy" id="easy">Easy</option>
+        <option value="medium" id="medium">Medium</option>
+        <option value="hard" id="hard">Hard</option>
+      </select>
+      </p>
+      <h3 id="question"></h3>
+      <p>
+        <p>
+          <input type="radio" id="choice1" name="answers">
+          <label for="choice1"></label>
+        </p>
+        <p>
+          <input type="radio" id="choice2" name="answers">
+          <label for="choice2"></label>
+        </p>
+        <p>
+          <input type="radio" id="choice3" name="answers">
+          <label for="choice3"></label>
+        </p>
+        <p>
+          <input type="radio" id="choice4" name="answers">
+          <label for="choice4"></label>
+        </p>
+      </p>
+      <p>
+        <input type="button" value="Submit">
+      </p>
+    </fieldset>
+  </form>
+</body>
+
+</html>
