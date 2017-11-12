@@ -1,55 +1,75 @@
+
+/*  only let the choose event happen once per page so you cant change questions repeatedly */
+
+/* variable to keep track of point total */
+
 /* have a variable that keeps track of right answers out of total questions*/
 let correctTotal;
 /* have a variable that keeps track of wrong answers out of 3  */
 let wrongTotal;
 /* if at any time a player gets three questions wrong...he is taken to the loser screen */
 
-/*  have a variable that keeps track of category chosen  */
+/* ------------- keep track of category selected ------------ */
 let category = $("#pick-category");
-//console.log(category.val())
 let selectedCategory;
 category.change(function() {
   selectedCategory = category.val();
 });
 
 
-/*  have a variable that keeps track of difficulty chosen  */
+/* -----------------------------------------------------------
+--keep track of difficulty selected
+--once difficulty value changes make an api call for the question with the appropriate category and difficulty selections
+-------------------------------------------------------------- */
+
 let selectedDifficulty;
 let difficulty = $("#pick-difficulty");
 let getRadios = $("input:radio");
+let questionCall;
 
-difficulty.change(function() {
+let difficultyChange = difficulty.change(function() {
   let selectedDifficulty = difficulty.val();
+  console.log(selectedDifficulty)
+  console.log(selectedCategory)
   if (!selectedCategory) {
-    alert("Pick a category first!")
+    alert("Pick a category first!");
     difficulty.find("option:first").attr("selected", "selected")
+  } else {
+    $.ajax({
+      url: `https://opentdb.com/api.php?amount=1&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`,
+      success: function(data) {
+        askQuestion(data);
+      }
+    });
+  }
+});
+
+/* ------------- populate form with call result ------------ */
+let radioID;
+let correctAnswer;
+
+function askQuestion(result) {
+
+  let setQuestion = $("#question").text(result["results"]["0"]["question"])
+  let wrongAnswers = result["results"]["0"]["incorrect_answers"]
+  correctAnswer = result["results"]["0"]["correct_answer"];
+  let answers = [];
+  answers.push(correctAnswer)
+
+  for (let i = 0; i < wrongAnswers.length; i++) {
+    answers.push(wrongAnswers[i])
   }
 
-  $.ajax({
-    url: `https://opentdb.com/api.php?amount=1&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`,
-    success: function(result) {
-      console.log(result)
-      let setQuestion = $("#question").text(result["results"]["0"]["question"])
-      let wrongAnswers = result["results"]["0"]["incorrect_answers"]
-      let answers = [];
-      answers.push(result["results"]["0"]["correct_answer"])
+  shuffleArray(answers);
 
-      for (let i = 0; i < wrongAnswers.length; i++) {
-        answers.push(wrongAnswers[i])
-      }
+  for (let i = 0; i < getRadios.length; i++) {
+    radioID = ($(getRadios[i]).attr("id"));
 
-      shuffleArray(answers);
-
-      for (let i = 0; i < getRadios.length; i++) {
-        let radioID = ($(getRadios[i]).attr("id"))
-
-        for (let j = 0; j < answers.length; j++) {
-          $(`label[for=${radioID}]`).text(answers[i])
-        }
-      }
+    for (let j = 0; j < answers.length; j++) {
+      $(`label[for=${radioID}]`).text(answers[i])
     }
-  });
-});
+  }
+}
 
 function shuffleArray(answers) {
   for (let i = answers.length - 1; i > 0; i--) {
@@ -61,10 +81,19 @@ function shuffleArray(answers) {
   return answers;
 }
 
-/* if category is not selected then the difficulty tab should not return a trivia question  ... check by using .length   if category object.length > 0 then go ahead and let the difficulty tab make an api call...the short way is .......  if ($(category).length)*/
+/* ------------- check which radio button is selected ------------ */
+/* ------------- once submit is clicked check if answer = correct answer ------------ */
+let getSubmit = $("#submit");
 
-/* once a category and difficulty level have been chosen then the difficulty tab produces a question after event change on the difficulty drop down */
+getSubmit.click(function () {
+  let selectedAnswer = $("input:radio:checked").attr("id");
 
+  if ($(`label[for=${selectedAnswer}]`).text() === correctAnswer) {
+    alert("Correct!");
+  } else {
+    alert("Fail");
+  }
+});
 
 
 
