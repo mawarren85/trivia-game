@@ -1,4 +1,9 @@
 
+$(document).ready(function() {
+   $('select').material_select();
+  
+ });
+
 /*  only let the choose event happen once per page so you cant change questions repeatedly */
 
 /* variable to keep track of point total */
@@ -16,21 +21,17 @@ category.change(function() {
   selectedCategory = category.val();
 });
 
-
 /* -----------------------------------------------------------
 --keep track of difficulty selected
 --once difficulty value changes make an api call for the question with the appropriate category and difficulty selections
 -------------------------------------------------------------- */
 
-let selectedDifficulty;
 let difficulty = $("#pick-difficulty");
 let getRadios = $("input:radio");
-let questionCall;
 
 let difficultyChange = difficulty.change(function() {
   let selectedDifficulty = difficulty.val();
-  console.log(selectedDifficulty)
-  console.log(selectedCategory)
+
   if (!selectedCategory) {
     alert("Pick a category first!");
     difficulty.find("option:first").attr("selected", "selected")
@@ -81,14 +82,16 @@ function shuffleArray(answers) {
   return answers;
 }
 
-/* ------------- check which radio button is selected ------------ */
-/* ------------- once submit is clicked check if answer = correct answer ------------ */
+/* -------- once submit is clicked check if answer is correct ------ */
+
 let getSubmit = $("#submit");
 
 getSubmit.click(function () {
   let selectedAnswer = $("input:radio:checked").attr("id");
 
-  if ($(`label[for=${selectedAnswer}]`).text() === correctAnswer) {
+  if (!selectedAnswer) {
+    alert("Choose an answer")
+  } else if ($(`label[for=${selectedAnswer}]`).text() === correctAnswer) {
     alert("Correct!");
   } else {
     alert("Fail");
@@ -96,12 +99,8 @@ getSubmit.click(function () {
 });
 
 
+/* on first start page toggle class 'hidden?' for radio buttons */
 
-/* the event change also causes 4 different answers to populate with radio buttons .... toggle class 'hidden?' */
-
-/*  a selection of the radio button causes the submit button to activate...if the submit button is hit without a radio button being selected then an alert pops up saying that you need to select an answer */
-
-/* with a valid answer selected the submit button checks to see if the answer is correct or wrong*/
 
 /* if the answer is wrong then the player is taken back to the previous screen...the incorrect tally is incremented...and the form populates another question with radio buttons...the category and difficulty level stay the same*/
 

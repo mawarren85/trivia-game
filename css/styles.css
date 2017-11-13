@@ -1,0 +1,68 @@
+.container {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 2px solid blue;
+}
+form {
+  position: fixed;
+  bottom: 100px;
+  width: 300px;
+  background-color: white;
+  z-index: 100;
+}
+fieldset {
+  border-style: none;
+}
+.land {
+  width: 800px;
+  height: 22000px;
+  background-color: darkgrey;
+  margin: 0 auto;
+  border-bottom: 2px solid black;
+}
+.level1, .level2, .level3, .level4, .level5, .level6, .level7{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  position: relative;
+  width: 100%;
+  height: 3000px;
+}
+
+.level1 {
+  background-image: url("../images/longmap1.png");
+
+}
+.level2 {
+  background-image: url("../images/longmap2.png");
+  top: -145px;
+}
+.level3 {
+  background-image: url("../images/longmap3.png");
+  top: -185px;
+}
+.level4 {
+  background-image: url("../images/longmap4.png");
+  top: -240px;
+}
+.level5 {
+  background-image: url("../images/longmap5.png");
+  top: -280px;
+}
+.level6 {
+  background-image: url("../images/longmap6.png");
+  top: -340px;
+}
+.level7 {
+  background-image: url("../images/longmap7.png");
+  top: -517px;
+}
+
+/*.level1 {
+  background-image: url("../images/longmap1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}*/
