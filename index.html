@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <!--  ==================== bootstrap ===================== -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <!--  =================================================== -->
   <script defer src="js/jquery-2.2.4.min.js"></script>
   <script defer src="js/main.js"></script>
@@ -16,14 +16,54 @@
 </head>
 
 <body>
+  <!-- ========================= Main page =======================-->
   <div class="container">
+    <div class="row border border-info">
+      <div class="col-md-12 main border border-info">
+        <h1 class="display-1">Game Name</h1>
+        <p class="lead">Deep v freegan disrupt hot chicken lomo drinking vinegar selfies locavore snackwave post-ironic man bun ugh williamsburg selvage. Mustache four dollar toast tacos unicorn. Man bun artisan beard farm-to-table aesthetic cloud bread wayfarers. Pinterest
+          vinyl venmo disrupt, you probably haven't heard of them prism tilde.
+        </p>
+        <p class="lead"> Pop-up banh mi scenester truffaut lyft offal. Vaporware before they sold out pok pok pitchfork +1, plaid microdosing chia literally. Craft beer kombucha bushwick gochujang. Crucifix photo booth aesthetic air plant tacos cloud bread.
+        </p>
+        <a href="#setup"><button name="newPlayer" id="new" class="btn btn-lg btn-info">New Player</button></a>
+        <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a>
+      </div>
+    </div>
 
-    <form>
+    <!-- ================New player setup page =======================-->
+
+    <div class="row border border-info" id="setup">
+      <div class="col-md-12 main border border-info">
+        <h2 class="display-4">New Player Options</h2>
+        <form class="border border-info text-left player">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="user-name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="pick-avatar">Pick Avatar</label>
+            <select name="avatar" id="pick-avatar" class="custom-select">
+            <option id="avatar" value="pick-avatar">Pick Avatar</option>
+            <option id="avatar1" value="avatar-name1">Avatar One</option>
+            <option id="avatar2" value="avatar-name2">Avatar Two</option>
+            <option id="avatar3" value="avatar-name3">Avatar Three</option>
+          </select>
+          </div>
+        </form>
+        <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a>
+      </div>
+    </div>
+
+    <!-- ==================== Trivia Form =======================-->
+
+
+    <form class="trivia">
       <fieldset>
         <h2>Trivia Question</h2>
         <p>
           <label for="pick-category">Category</label>
-          <select name="category" id="pick-category">
+          <select name="category" id="pick-category" class="custom-select">
         <option id="category">Pick Category</option>
         <option id="animals" value="27">Animals</option>
         <option id="art" value="25">Art</option>
@@ -44,7 +84,7 @@
         </p>
         <p>
           <label for="pick-difficulty">Difficulty</label>
-          <select name="difficulty" id="pick-difficulty">
+          <select name="difficulty" id="pick-difficulty" class="custom-select">
         <option value="difficulty">Pick Difficulty</option>
         <option value="easy" id="easy">Easy</option>
         <option value="medium" id="medium">Medium</option>
@@ -52,43 +92,88 @@
       </select>
         </p>
         <h3 id="question"></h3>
-        <p>
-          <p>
-            <input type="radio" id="choice1" name="answers">
-            <label for="choice1"></label>
-          </p>
-          <p>
-            <input type="radio" id="choice2" name="answers">
-            <label for="choice2"></label>
-          </p>
-          <p>
-            <input type="radio" id="choice3" name="answers">
-            <label for="choice3"></label>
-          </p>
-          <p>
-            <input type="radio" id="choice4" name="answers">
-            <label for="choice4"></label>
-          </p>
-        </p>
-        <p>
-          <input type="button" value="Submit" id="submit">
-        </p>
+        <!-- <div id="radios" class="hidden"> -->
+        <div>
+          <input type="radio" id="choice1" name="answers" class="hidden">
+          <label for="choice1"></label>
+        </div>
+        <div>
+          <input type="radio" id="choice2" name="answers" class="hidden">
+          <label for="choice2"></label>
+        </div>
+        <div>
+          <input type="radio" id="choice3" name="answers" class="hidden">
+          <label for="choice3"></label>
+        </div>
+        <div>
+          <input type="radio" id="choice4" name="answers" class="hidden">
+          <label for="choice4"></label>
+        </div>
+        <!-- </div> -->
+        <div>
+          <input type="button" value="Submit" id="submit" class="hidden">
+        </div>
       </fieldset>
+      <div class="score border border-info">
+        <p>Player Name: </p>
+        <ul>
+          <li class="correct"></li>
+          <li class="incorrect"></li>
+        </ul>
+      </div>
     </form>
-    <div class="land">
-      <div class="level1">
+
+
+    <!-- ==================== Level pages =======================-->
+
+
+    <div class="land" id="start">
+      <div class="level1" id="level1">
+        <div class="main" id="level2">
+        </div>
       </div>
-      <div class="level2">
+      <div class="level3" id="level3">
+        <div class="main" id="level4">
+        </div>
       </div>
-      <div class="level3">
+      <div class="level5" id="level5">
+        <div class="main" id="level6">
+        </div>
       </div>
-      <div class="level4">
+      <div class="level7" id="level7">
+        <div class="main" id="level8">
+        </div>
       </div>
-      <div class="level5">
+      <div class="level9" id="level9">
+        <div class="main" id="level10">
+        </div>
       </div>
-      <div class="level6">
+      <div class="level11" id="level11">
+        <div class="main" id="level12">
+        </div>
       </div>
-      <div class="level7">
+      <div class="level13" id="level13">
+        <div class="main" id="level14">
+        </div>
+      </div>
+        <div class="level15" id="level15">
+          <div class="main" id="level16">
+          </div>
+        </div>
+      </div>
+
+
+    <!-- ==================== Fail page =======================-->
+    <div class="row border border-info">
+      <div class="col-md-12 main border border-info" id="lose">
+        <h1 class="display-1">You lose</h1>
+      </div>
+    </div>
+    <!-- ==================== Win page =======================-->
+
+    <div class="row border border-info">
+      <div class="col-md-12 main border border-info" id="win">
+        <h1 class="display-1">You win</h1>
       </div>
     </div>
   </div>

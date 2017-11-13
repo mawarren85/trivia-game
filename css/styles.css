@@ -4,24 +4,41 @@
   margin: 0 auto;
   border: 2px solid blue;
 }
-form {
-  position: fixed;
-  bottom: 100px;
+h1,
+h2 {
+  margin-top: 15%;
+  margin-bottom: 10%;
+}
+.main {
+  text-align: center;
+  height: 1200px;
+  padding: 0 150px;
+}
+button {
+  margin: 8%;
+}
+.player {
+  padding: 10px;
+}
+.trivia {
+  position: sticky;
+  top: 20px;
+  left: 20px;
   width: 300px;
   background-color: white;
   z-index: 100;
 }
-fieldset {
-  border-style: none;
+.hidden {
+  display: none;
 }
 .land {
   width: 800px;
   height: 22000px;
   background-color: darkgrey;
   margin: 0 auto;
-  border-bottom: 2px solid black;
+  box-shadow: 0 0 15px black;
 }
-.level1, .level2, .level3, .level4, .level5, .level6, .level7{
+.level1, .level3, .level5, .level7, .level9, .level11, .level13 {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -34,35 +51,38 @@ fieldset {
   background-image: url("../images/longmap1.png");
 
 }
-.level2 {
+.level3 {
   background-image: url("../images/longmap2.png");
   top: -145px;
 }
-.level3 {
+.level5 {
   background-image: url("../images/longmap3.png");
   top: -185px;
 }
-.level4 {
+.level7 {
   background-image: url("../images/longmap4.png");
   top: -240px;
 }
-.level5 {
+.level9 {
   background-image: url("../images/longmap5.png");
   top: -280px;
 }
-.level6 {
+.level11 {
   background-image: url("../images/longmap6.png");
   top: -340px;
 }
-.level7 {
+.level13 {
   background-image: url("../images/longmap7.png");
-  top: -517px;
+  top: -518px;
 }
-
-/*.level1 {
-  background-image: url("../images/longmap1.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
+/*.level2, .level4, .level6, .level8, .level10, .level12, .level14 {
+  position: fixed;
+  top: 3000px;
+  height: 20px;
+  background-color: blue;
 }*/
+#level2, #level4, #level6, #level8, #level10, #level12, #level14, #level16 {
+  width: 900px;
+  position: relative;
+  top: 500px;
+}
