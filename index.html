@@ -41,15 +41,18 @@
             <label for="name">Your Name</label>
             <input type="text" id="name" name="user-name" class="form-control">
           </div>
-          <div class="form-group">
-            <label for="pick-avatar">Pick Avatar</label>
-            <select name="avatar" id="pick-avatar" class="custom-select">
-            <option id="avatar" value="pick-avatar">Pick Avatar</option>
-            <option id="avatar1" value="avatar-name1">Avatar One</option>
-            <option id="avatar2" value="avatar-name2">Avatar Two</option>
-            <option id="avatar3" value="avatar-name3">Avatar Three</option>
-          </select>
+          <label id="pick-avatar">Pick Avatar: </label>
+          <div class="avatar-container">
+            <div class="cartman avatar" id="cartman"></div>
+            <div class="hipster avatar" id="hipster"></div>
+            <div class="lisa avatar" id="lisa"></div>
+            <div class="spongebob avatar" id="spongebob"></div>
+            <div class="brian avatar" id="brian"></div>
+            <div class="yoda avatar" id="yoda"></div>
+            <div class="gosling avatar" id="gosling"></div>
+            <div class="garfield avatar" id="garfield"></div>
           </div>
+          <button name="done" class="btn btn-lg btn-info" id="setup-button">Done</button>
         </form>
         <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a>
       </div>
@@ -92,7 +95,6 @@
       </select>
         </p>
         <h3 id="question"></h3>
-        <!-- <div id="radios" class="hidden"> -->
         <div>
           <input type="radio" id="choice1" name="answers" class="hidden">
           <label for="choice1"></label>
@@ -109,13 +111,12 @@
           <input type="radio" id="choice4" name="answers" class="hidden">
           <label for="choice4"></label>
         </div>
-        <!-- </div> -->
         <div>
           <input type="button" value="Submit" id="submit" class="hidden">
         </div>
       </fieldset>
       <div class="score border border-info">
-        <p>Player Name: </p>
+        <p id="displayName">Player Name: </p>
         <ul>
           <li class="correct"></li>
           <li class="incorrect"></li>
@@ -128,6 +129,8 @@
 
 
     <div class="land" id="start">
+      <div id="avatar-start" class="avatar"></div>
+
       <div class="level1" id="level1">
         <div class="main" id="level2">
         </div>

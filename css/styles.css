@@ -84,5 +84,52 @@ button {
 #level2, #level4, #level6, #level8, #level10, #level12, #level14, #level16 {
   width: 900px;
   position: relative;
-  top: 500px;
+  top: 1000px;
 }
+.avatar {
+  height: 75px;
+  width: 75px;
+  display: inline-block;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.cartman {
+  background-image: url("../images/cartman.png");
+}
+.hipster {
+  background-image: url("../images/hipster.png");
+}
+.lisa {
+  background-image: url("../images/lisa.png");
+}
+.spongebob {
+  background-image: url("../images/spongebob.png");
+}
+.brian {
+  background-image: url("../images/brian.jpg");
+}
+.yoda {
+  background-image: url("../images/yoda.gif");
+}
+.gosling {
+  background-image: url("../images/gosling.png");
+}
+.garfield {
+  background-image: url("../images/garfield.png");
+}
+.blue {
+  border: 3px solid blue;
+}
+#avatar-start > img {
+  height: 75px;
+  position: relative;
+  left: 550px;
+  top: 650px;
+  z-index: 200;
+}
+/*.land > .avatar {
+  position: fixed;
+  left: 100px;
+
+}*/

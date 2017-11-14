@@ -127,7 +127,7 @@ getSubmit.click(function() {
     incorrectTotal++;
     levelCount--;
     if (levelCount === 0) {
-      levelCount++
+      levelCount++;
     }
     getIncorrect.text(`${incorrectTotal} / 3`); // display incorrect total
     currentLevel = $(`${currentLevel}${levelCount}`);
@@ -174,7 +174,54 @@ function gameOver(result) {
 
 }
 
-/* if the player makes it through all of the questions then he is taken to the winning screen*/
+/* ------------- new player setup ------------ */
+
+let getAvatarContainer = $(".avatar-container > div");
+let getSetupButton = $("#setup-button");
+let getNameDisplay = $("#displayName");
+let selectedAvatar;
+let selectedAvatarID;
+let selectedAvatarSrc;
+let imgKeys = {
+  cartman: "images/cartman.png",
+  hipster: "images/hipster.png",
+  lisa: "images/lisa.png",
+  spongebob: "images/spongebob.png",
+  brian: "images/brian.jpg",
+  yoda: "images/yoda.gif",
+  gosling: "images/gosling.png",
+  garfield: "images/garfield.png"
+};
+
+getAvatarContainer.click(function(event) {     // get avatar selected
+  selectedAvatar = event.target;
+  selectedAvatarID = $(selectedAvatar).attr("id");
+  selectedAvatarSrc = imgKeys[selectedAvatarID]
+  $(".blue").toggleClass("blue");
+  $(selectedAvatar).toggleClass("blue");
+
+});
+
+getSetupButton.click(function(){     // display name on question form
+  event.preventDefault();
+  let getName = $("#name");
+  let getNameVal = getName.val();
+  getNameDisplay.text(`Player: ${getNameVal}`);
+
+  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar")
+
+});
+
+/* ------------- animate ------------ */
 
 
-/* if the player has 3 inccorect answers take him to the losing screen*/
+
+
+
+
+
+
+
+/* have a way to store player avatar and scores */
+
+/* move avatar around the board */
