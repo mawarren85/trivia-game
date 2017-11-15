@@ -509,7 +509,8 @@ let level7_4 = {
     angle: 297.263,
     length: 1.340
   }
-};let level7_5 = {
+};
+let level7_5 = {
   start: {
     x: 380,
     y: 8500,
@@ -521,6 +522,216 @@ let level7_4 = {
     y: 8900,
     angle: 20.263,
     length: 1.340
+  }
+};
+let level8_1 = {
+  start: {
+    x: 380,
+    y: 8900,
+    angle: 40.631,
+    length: 0.986
+  },
+  end: {
+    x: 380,
+    y: 9575,
+    angle: 285.263,
+    length: 1.240
+  }
+};
+let level8_2 = {
+  start: {
+    x: 380,
+    y: 9575,
+    angle: 256.631,
+    length: 1.486
+  },
+  end: {
+    x: 415,
+    y: 9775,
+    angle: 73.263,
+    length: 1.240
+  }
+};
+let level8_3 = {
+  start: {
+    x: 415,
+    y: 9775,
+    angle: 1.631,
+    length: 0.486
+  },
+  end: {
+    x: 375,
+    y: 10000,
+    angle: 64.263,
+    length: 1.640
+  }
+};
+let level9_1 = {
+  start: {
+    x: 375,
+    y: 10000,
+    angle: 102.631,
+    length: 2.086
+  },
+  end: {
+    x: 350,
+    y: 10250,
+    angle: 282.263,
+    length: 2.240
+  }
+};
+let level9_2 = {
+  start: {
+    x: 350,
+    y: 10250,
+    angle: 300.631,
+    length: 0.986
+  },
+  end: {
+    x: 550,
+    y: 10700,
+    angle: 310.263,
+    length: 1.140
+  }
+};
+let level9_3 = {
+  start: {
+    x: 550,
+    y: 10700,
+    angle: 323.631,
+    length: 0.286
+  },
+  end: {
+    x: 270,
+    y: 11800,
+    angle: 26.263,
+    length: 0.640
+  }
+};
+let level9_4 = {
+  start: {
+    x: 270,
+    y: 11800,
+    angle: 32.631,
+    length: 0.286
+  },
+  end: {
+    x: 570,
+    y: 12375,
+    angle: 69.263,
+    length: 0.640
+  }
+};
+let level10_1 = {
+  start: {
+    x: 570,
+    y: 12375,
+    angle: 75.631,
+    length: 1.586
+  },
+  end: {
+    x: 415,
+    y: 12775,
+    angle: 298.263,
+    length: 1.240
+  }
+};
+let level10_2 = {
+  start: {
+    x: 415,
+    y: 12775,
+    angle: 95.631,
+    length: 1.586
+  },
+  end: {
+    x: 425,
+    y: 13250,
+    angle: 305.263,
+    length: 0.740
+  }
+};
+let level11_1 = {
+  start: {
+    x: 425,
+    y: 13250,
+    angle: 281.631,
+    length: 0.886
+  },
+  end: {
+    x: 300,
+    y: 13700,
+    angle: 59.963,
+    length: 0.440
+  }
+};
+let level11_2 = {
+  start: {
+    x: 300,
+    y: 13700,
+    angle: 69.931,
+    length: 1.186
+  },
+  end: {
+    x: 200,
+    y: 13900,
+    angle: 49.963,
+    length: 1.440
+  }
+};
+let level11_3 = {
+  start: {
+    x: 200,
+    y: 13900,
+    angle: 39.931,
+    length: 0.186
+  },
+  end: {
+    x: 560,
+    y: 14255,
+    angle: 101.963,
+    length: 0.640
+  }
+};
+let level11_4 = {
+  start: {
+    x: 560,
+    y: 14255,
+    angle: 285.931,
+    length: 0.286
+  },
+  end: {
+    x: 250,
+    y: 14755,
+    angle: 26.963,
+    length: 0.540
+  }
+};
+let level12_1 = {
+  start: {
+    x: 250,
+    y: 14755,
+    angle: 37.931,
+    length: 0.786
+  },
+  end: {
+    x: 650,
+    y: 15350,
+    angle: 30.963,
+    length: 0.440
+  }
+};
+let level12_2 = {
+  start: {
+    x: 650,
+    y: 15350,
+    angle: 269.931,
+    length: 0.186
+  },
+  end: {
+    x: 595,
+    y: 15950,
+    angle: 38.963,
+    length: 0.240
   }
 };
 function moveAvatarForward(level) {
@@ -593,7 +804,7 @@ function moveAvatarForward(level) {
         path: new $.path.bezier(level6_2)
       }, 1500, "linear");
     });
-  } else {
+  } else if ($(level).attr("id") === "level7"){
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level7_1)
     }, 500, "linear", function () {
@@ -612,6 +823,66 @@ function moveAvatarForward(level) {
           });
         });
       });
+    });
+  } else if ($(level).attr("id") === "level8"){
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(level8_1)
+    }, 1000, "linear", function (){
+      $("#avatar-start > img").animate({
+        path: new $.path.bezier(level8_2)
+      }, 1000, "linear", function () {
+        $("#avatar-start > img").animate({
+          path: new $.path.bezier(level8_3)
+        }, 1000, "linear");
+      });
+    });
+  } else if ($(level).attr("id") === "level9"){
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(level9_1)
+    }, 1000, "linear", function () {
+      $("#avatar-start > img").animate({
+        path: new $.path.bezier(level9_2)
+      }, 1000, "linear", function () {
+        $("#avatar-start > img").animate({
+          path: new $.path.bezier(level9_3)
+        }, 1000, "linear", function () {
+          $("#avatar-start > img").animate({
+            path: new $.path.bezier(level9_4)
+          }, 1000, "linear");
+        });
+      });
+    });
+  } else if ($(level).attr("id") === "level10"){
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(level10_1)
+    }, 1000, "linear", function (){
+      $("#avatar-start > img").animate({
+        path: new $.path.bezier(level10_2)
+      }, 1500, "linear");
+    });
+  } else if ($(level).attr("id") === "level11"){
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(level11_1)
+    }, 1500, "linear", function () {
+      $("#avatar-start > img").animate({
+        path: new $.path.bezier(level11_2)
+      }, 1500, "linear", function () {
+        $("#avatar-start > img").animate({
+          path: new $.path.bezier(level11_3)
+        }, 1000, "linear", function () {
+          $("#avatar-start > img").animate({
+            path: new $.path.bezier(level11_4)
+          }, 1000, "linear");
+        });
+      });
+    });
+  } else {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(level12_1)
+    }, 1000, "linear", function () {
+      $("#avatar-start > img").animate({
+        path: new $.path.bezier(level12_2)
+      }, 1000, "linear");
     });
   }
 }
