@@ -157,6 +157,7 @@ function moveBackward(level) {
   } else if (level === $(getLevel1)) {
     level = $(getLevel1);
   } else {
+    moveAvatarBackward(level);
     $('html, body').animate({
       scrollTop: $(level).offset().top
     }, 2000);
@@ -734,6 +735,147 @@ let level12_2 = {
     length: 0.240
   }
 };
+let returnToLevel1 = {
+  start: {
+    x: 470,
+    y: 1500,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 650,
+    y: 550,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel2 = {
+  start: {
+    x: 550,
+    y: 3000,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 470,
+    y: 1500,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel3 = {
+  start: {
+    x: 400,
+    y: 4000,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 450,
+    y: 3000,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel4 = {
+  start: {
+    x: 400,
+    y: 5990,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 400,
+    y: 4000,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel5 = {
+  start: {
+    x: 360,
+    y: 6970,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 400,
+    y: 5900,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel6 = {
+  start: {
+    x: 380,
+    y: 8900,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 360,
+    y: 6970,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel7 = {
+  start: {
+    x: 375,
+    y: 10000,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 380,
+    y: 8900,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel8 = {
+  start: {
+    x: 570,
+    y: 12375,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 375,
+    y: 10000,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel9 = {
+  start: {
+    x: 425,
+    y: 13250,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 570,
+    y: 12375,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+let returnToLevel10 = {
+  start: {
+    x: 250,
+    y: 14755,
+    angle: 7.931,
+    length: 0.886
+  },
+  end: {
+    x: 425,
+    y: 13250,
+    angle: 359.963,
+    length: 0.340
+  }
+};
+
 function moveAvatarForward(level) {
 
   if ($(level).attr("id") === "level2") {
@@ -796,27 +938,27 @@ function moveAvatarForward(level) {
         });
       });
     });
-  } else if ($(level).attr("id") === "level6"){
+  } else if ($(level).attr("id") === "level6") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level6_1)
-    }, 1000, "linear", function () {
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level6_2)
       }, 1500, "linear");
     });
-  } else if ($(level).attr("id") === "level7"){
+  } else if ($(level).attr("id") === "level7") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level7_1)
-    }, 500, "linear", function () {
+    }, 500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level7_2)
-      }, 800, "linear", function () {
+      }, 800, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level7_3)
-        }, 1000, "linear", function () {
+        }, 1000, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level7_4)
-          }, 1000, "linear", function () {
+          }, 1000, "linear", function() {
             $("#avatar-start > img").animate({
               path: new $.path.bezier(level7_5)
             }, 1000, "linear");
@@ -824,52 +966,52 @@ function moveAvatarForward(level) {
         });
       });
     });
-  } else if ($(level).attr("id") === "level8"){
+  } else if ($(level).attr("id") === "level8") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level8_1)
-    }, 1000, "linear", function (){
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level8_2)
-      }, 1000, "linear", function () {
+      }, 1000, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level8_3)
         }, 1000, "linear");
       });
     });
-  } else if ($(level).attr("id") === "level9"){
+  } else if ($(level).attr("id") === "level9") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level9_1)
-    }, 1000, "linear", function () {
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level9_2)
-      }, 1000, "linear", function () {
+      }, 1000, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level9_3)
-        }, 1000, "linear", function () {
+        }, 1000, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level9_4)
           }, 1000, "linear");
         });
       });
     });
-  } else if ($(level).attr("id") === "level10"){
+  } else if ($(level).attr("id") === "level10") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level10_1)
-    }, 1000, "linear", function (){
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level10_2)
       }, 1500, "linear");
     });
-  } else if ($(level).attr("id") === "level11"){
+  } else if ($(level).attr("id") === "level11") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level11_1)
-    }, 1500, "linear", function () {
+    }, 1500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level11_2)
-      }, 1500, "linear", function () {
+      }, 1500, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level11_3)
-        }, 1000, "linear", function () {
+        }, 1000, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level11_4)
           }, 1000, "linear");
@@ -879,13 +1021,61 @@ function moveAvatarForward(level) {
   } else {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level12_1)
-    }, 1000, "linear", function () {
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level12_2)
       }, 1000, "linear");
     });
   }
 }
+
+function moveAvatarBackward(level) {
+  console.log(level);
+  if ($(level).attr("id") === "level1") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel1)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level2") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel2)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level3") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel3)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level4") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel4)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level5") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel5)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level6") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel6)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level7") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel7)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level8") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel8)
+    }, 1000, "linear");
+  } else if ($(level).attr("id") === "level9") {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel9)
+    }, 1000, "linear");
+  } else {
+    $("#avatar-start > img").animate({
+      path: new $.path.bezier(returnToLevel10)
+    }, 1000, "linear");
+  }
+}
+
+
+
 
 
 
