@@ -1,5 +1,16 @@
 /* jshint esversion:6 */
 
+
+
+
+/* fix api call encoding */
+/* way for li elements to not go down to the next line below the radio buttons if the line is too long */
+/* add poop emoji */
+
+
+
+
+
 /* ------------- smooth scroll to link ------------ */
 
 $(document).on('click', 'a[href^="#"]', function(event) {
@@ -19,7 +30,50 @@ let correctTotal = 0;
 let incorrectTotal = 0;
 /* if at any time a player gets three questions wrong...he is taken to the loser screen */
 
+/* ------------- new player setup ------------ */
+
+let getAvatarContainer = $(".avatar-container > div");
+let getSetupButton = $("#setup-button");
+let getNameDisplay = $("#displayName");
+let getName;
+let getSmartRadio;
+let selectedAvatar;
+let selectedAvatarID;
+let selectedAvatarSrc;
+let selectedAvatarNoQuotes;
+let imgKeys = {
+  cartman: "images/cartman.png",
+  hipster: "images/hipster.png",
+  lisa: "images/lisa.png",
+  spongebob: "images/spongebob.png",
+  brian: "images/brian.jpg",
+  yoda: "images/yoda.gif",
+  gosling: "images/gosling.png",
+  garfield: "images/garfield.png"
+};
+
+getAvatarContainer.click(function(event) { // get avatar selected
+  selectedAvatar = event.target;
+  selectedAvatarID = $(selectedAvatar).attr("id");
+  selectedAvatarSrc = imgKeys[selectedAvatarID];
+  $(".blue").toggleClass("blue");
+  $(selectedAvatar).toggleClass("blue");
+  selectedAvatarNoQuotes = selectedAvatarSrc.replace(/"/g, "");
+});
+
+getSetupButton.click(function() { // display name on question form
+  event.preventDefault();
+  getName = $("#name");
+  let getNameVal = getName.val();
+  getNameDisplay.text(`Player: ${getNameVal}`);
+  getSmartRadio = $("input[name='smart']:radio:checked");
+console.log($(getSmartRadio).attr("id"));
+  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar");     // put avatar on start page
+
+});
+
 /* ------------- keep track of category selected ------------ */
+
 let category = $("#pick-category");
 let selectedCategory;
 category.change(function() {
@@ -41,7 +95,7 @@ let difficultyChange = difficulty.change(function() {
 
   if (!selectedCategory) {
     alert("Pick a category first!");
-    difficulty.find("option:first").attr("selected", "selected")
+    difficulty.find("option:first").attr("selected", "selected");
   } else {
     $.ajax({
       url: `https://opentdb.com/api.php?amount=1&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`,
@@ -115,7 +169,7 @@ getSubmit.click(function() {
   let selectedAnswer =
    $("input[name='answers']:radio:checked").attr("id");
   let currentLevel = "#level";
-console.log(selectedAnswer)
+
   if (!selectedAnswer) {
     alert("Choose an answer");
   } else if (correctTotal === 11) {
@@ -136,11 +190,12 @@ console.log(selectedAnswer)
     currentLevel = $(`${currentLevel}${levelCount}`);
     moveBackward(currentLevel);
   }
+  $(getRadios).attr("checked", false);
 });
 
 function moveForward(level) {
   moveAvatarForward(level);
-  console.log(level, "current level");
+
   $('html, body').animate({
     scrollTop: $(level).offset().top
   }, 5000); // originally set at 2000...set back!
@@ -188,9 +243,9 @@ function gameOver(result) {
 
 function failTextP () {
   let getLoserTextP = $(".loser-text-p");
-  if ($(getSmartRadio).text() === "Yes") {
+  if ($(getSmartRadio).attr("id") === "yes-smart") {
     getLoserTextP.text("I thought you said you were smart.");
-  } else if ($(getSmartRadio).text() === "Maybe") {
+  } else if ($(getSmartRadio).attr("id") === "maybe-smart") {
     getLoserTextP.text("Maybe you should have checked 'not smart.'");
   } else {
     getLoserTextP.text("At least you knew how smart you were.");
@@ -198,59 +253,38 @@ function failTextP () {
 }
 
 function winTextP () {
+  console.log($(getSmartRadio).text());
   let getWinTextP = $(".win-text-p");
-  if ($(getSmartRadio).text() === "Yes") {
+  if ($(getSmartRadio).attr("id") === "yes-smart") {
     getWinTextP.text("You were right. You are smart!");
-  } else if ($(getSmartRadio).text() === "Maybe") {
+  } else if ($(getSmartRadio).attr("id") === "maybe-smart") {
     getWinTextP.text("You should have said you were smart!");
   } else {
     getWinTextP.text("You should be more confident. You are smart!");
   }
 }
-/* ------------- new player setup ------------ */
 
-let getAvatarContainer = $(".avatar-container > div");
-let getSetupButton = $("#setup-button");
-let getNameDisplay = $("#displayName");
-let getSmartRadio;
-let selectedAvatar;
-let selectedAvatarID;
-let selectedAvatarSrc;
-let selectedAvatarNoQuotes;
-let imgKeys = {
-  cartman: "images/cartman.png",
-  hipster: "images/hipster.png",
-  lisa: "images/lisa.png",
-  spongebob: "images/spongebob.png",
-  brian: "images/brian.jpg",
-  yoda: "images/yoda.gif",
-  gosling: "images/gosling.png",
-  garfield: "images/garfield.png"
-};
+/* ----------------------- reset trivia form ----------------------- */
+$(".rotate").click(function () {
 
-getAvatarContainer.click(function(event) { // get avatar selected
-  selectedAvatar = event.target;
-  selectedAvatarID = $(selectedAvatar).attr("id");
-  selectedAvatarSrc = imgKeys[selectedAvatarID];
-  $(".blue").toggleClass("blue");
-  $(selectedAvatar).toggleClass("blue");
-  selectedAvatarNoQuotes = selectedAvatarSrc.replace(/"/g, "");
-});
-
-getSetupButton.click(function() { // display name on question form
-  event.preventDefault();
-  let getName = $("#name");
-  let getNameVal = getName.val();
-  getNameDisplay.text(`Player: ${getNameVal}`);
-  getSmartRadio = $("input[name='smart']:radio:checked");
-  console.log(getSmartRadio);
-
-  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar"); // put avatar on start page
+    $(getRadios).toggleClass("hidden");
+    $(getRadios).next().empty();
+    $(getSubmit).toggleClass("hidden");
+    $(selectedAvatar).toggleClass("blue");
+    $(getName).val(" ");
+    $("#question").empty();
+    $(getNameDisplay).empty();
+    $(getNameDisplay).text("Player:");
+    $("#avatar-start").empty();
+    $(getSmartRadio).attr("checked", false);
+    $(category).val("1");
+    $(difficulty).val("difficulty");
+    correctTotal = 0;
+    incorrectTotal = 0;
+    getCorrect.text(`${correctTotal} / 12`);
+    getIncorrect.text(`${incorrectTotal} / 3`);
 
 });
-
-/* ----------------------- fail page ----------------------- */
-
 
 
 /* ----------------------- animate ----------------------- */
