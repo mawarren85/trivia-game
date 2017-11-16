@@ -12,9 +12,7 @@
 
 
   <script defer src="js/main.js"></script>
-
   <script defer src="js/jquery-2.2.4.min.js"></script>
-  <!-- <script  src="js/node_modules/jquerykeyframes/jquery.keyframes.js"></script> -->
   <script defer src="js/jquery.path.js"></script>
   <link rel="stylesheet" href="css/styles.css" type="text/css">
   <title>Triva Challenge</title>
@@ -22,44 +20,72 @@
 
 <body>
   <!-- ========================= Main page =======================-->
-  <div class="container">
-    <div class="row border border-info">
-      <div class="col-md-12 main border border-info">
-        <h1 class="display-1">Game Name</h1>
-        <p class="lead">Deep v freegan disrupt hot chicken lomo drinking vinegar selfies locavore snackwave post-ironic man bun ugh williamsburg selvage. Mustache four dollar toast tacos unicorn. Man bun artisan beard farm-to-table aesthetic cloud bread wayfarers. Pinterest
-          vinyl venmo disrupt, you probably haven't heard of them prism tilde.
+  <div class="container-fluid">
+    <div class="row">
+      <div class="header">
+        <h1>Game Name</h1>
+        <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
+      </div>
+      <div class="col-md-12 main welcome">
+
+        <!-- <img src="images/map8.png"> -->
+
+        <div class="brain"></div>
+        <h3>Think you know trivia?</h3>
+
+        <p class="col-md-9 text-center">Test your knowledge! Pick your favorite category and then choose a difficulty level to begin. If you get the question correct, you will be taken on a journey across different lands that will move you closer to victory and attaining bragging rights.
         </p>
-        <p class="lead"> Pop-up banh mi scenester truffaut lyft offal. Vaporware before they sold out pok pok pitchfork +1, plaid microdosing chia literally. Craft beer kombucha bushwick gochujang. Crucifix photo booth aesthetic air plant tacos cloud bread.
-        </p>
-        <a href="#setup"><button name="newPlayer" id="new" class="btn btn-lg btn-info">New Player</button></a>
-        <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a>
+        <p class="col-md-9 text-center">But watch out, answering a question incorrectly moves you back a level, and three incorrect answers result in your shame and cause the game to end. Click the arrow below and head on down to the player setup page to get started. </p>
+        <a href="#setup">
+          <div class="down-arrow"></div>
+        </a>
+
+
+        <!-- <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a> -->
+
+
+
       </div>
     </div>
 
     <!-- ================New player setup page =======================-->
 
-    <div class="row border border-info" id="setup">
-      <div class="col-md-12 main border border-info">
-        <h2 class="display-4">New Player Options</h2>
-        <form class="border border-info text-left player">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="user-name" class="form-control">
-          </div>
-          <label id="pick-avatar">Pick Avatar: </label>
-          <div class="avatar-container">
-            <div class="cartman avatar" id="cartman"></div>
-            <div class="hipster avatar" id="hipster"></div>
-            <div class="lisa avatar" id="lisa"></div>
-            <div class="spongebob avatar" id="spongebob"></div>
-            <div class="brian avatar" id="brian"></div>
-            <div class="yoda avatar" id="yoda"></div>
-            <div class="gosling avatar" id="gosling"></div>
-            <div class="garfield avatar" id="garfield"></div>
-          </div>
-          <button name="done" class="btn btn-lg btn-info" id="setup-button">Done</button>
-        </form>
-        <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a>
+    <div class="row" id="setup">
+      <div class="header">
+        <h1>Game Name</h1>
+        <h2>Player Setup</h2></div>
+      <div class="main welcome">
+
+        <div class="col-md-12">
+          <form class="player-setup">
+            <h3>First, a few questions...</h3>
+            <div class="form-group row">
+              <label for="name" class="label-title">Your Name:</label>
+              <input type="text" id="name" name="user-name">
+            </div>
+            <div class="form-group row">
+              <label class="label-title">Are You Smart?</label>
+              <input type="radio" id="yes-smart" name="smart" class="smart-radio">Yes
+              <input type="radio" id="not-smart" name="smart" class="smart-radio">No
+              <input type="radio" id="maybe-smart" name="smart" class="smart-radio">Maybe
+            </div>
+            <div class="form-group row">
+              <label id="pick-avatar" class="label-title">Pick Avatar: </label>
+              <div class="avatar-container">
+                <div class="cartman avatar" id="cartman"></div>
+                <div class="hipster avatar" id="hipster"></div>
+                <div class="lisa avatar" id="lisa"></div>
+                <div class="spongebob avatar" id="spongebob"></div>
+                <div class="brian avatar" id="brian"></div>
+                <div class="yoda avatar" id="yoda"></div>
+                <div class="gosling avatar" id="gosling"></div>
+                <div class="garfield avatar" id="garfield"></div>
+              </div>
+            </div>
+            <a href="#start"><button name="done" class="btn btn-lg btn-info" id="setup-button">Done</button></a>
+          </form>
+        </div>
+        <!-- <button name="play" class="btn btn-lg btn-info">Start Game</button></a> -->
       </div>
     </div>
 
@@ -68,10 +94,10 @@
 
     <form class="trivia">
       <fieldset>
-        <h2>Trivia Question</h2>
+        <h4 class="text-center">Trivia Question</h4>
         <p>
-          <label for="pick-category">Category</label>
-          <select name="category" id="pick-category" class="custom-select">
+          <label for="pick-category" class="label-title-sm">Category</label>
+          <select name="category" id="pick-category" class="custom-select border-info">
         <option id="category">Pick Category</option>
         <option id="animals" value="27">Animals</option>
         <option id="art" value="25">Art</option>
@@ -91,37 +117,37 @@
       </select>
         </p>
         <p>
-          <label for="pick-difficulty">Difficulty</label>
-          <select name="difficulty" id="pick-difficulty" class="custom-select">
+          <label for="pick-difficulty" class="label-title-sm">Difficulty</label>
+          <select name="difficulty" id="pick-difficulty" class="custom-select border-info">
         <option value="difficulty">Pick Difficulty</option>
         <option value="easy" id="easy">Easy</option>
         <option value="medium" id="medium">Medium</option>
         <option value="hard" id="hard">Hard</option>
       </select>
         </p>
-        <h3 id="question"></h3>
+        <p id="question" class="trivia-question"></p>
         <div>
-          <input type="radio" id="choice1" name="answers" class="hidden">
+          <input type="radio" id="choice1" name="answers" class="hidden label-title-sm">
           <label for="choice1"></label>
         </div>
         <div>
-          <input type="radio" id="choice2" name="answers" class="hidden">
+          <input type="radio" id="choice2" name="answers" class="hidden label-title-sm">
           <label for="choice2"></label>
         </div>
         <div>
-          <input type="radio" id="choice3" name="answers" class="hidden">
+          <input type="radio" id="choice3" name="answers" class="hidden label-title-sm">
           <label for="choice3"></label>
         </div>
         <div>
-          <input type="radio" id="choice4" name="answers" class="hidden">
+          <input type="radio" id="choice4" name="answers" class="hidden label-title-sm">
           <label for="choice4"></label>
         </div>
         <div>
-          <input type="button" value="Submit" id="submit" class="hidden">
+          <input type="button" value="Submit" id="submit" class="hidden btn btn-sm btn-info">
         </div>
       </fieldset>
-      <div class="score border border-info">
-        <p id="displayName">Player Name: </p>
+      <div class="score">
+        <p id="displayName">Player: </p>
         <ul>
           <li class="correct"></li>
           <li class="incorrect"></li>
@@ -164,27 +190,52 @@
         <div class="main" id="level14">
         </div>
       </div>
-        <div class="level15" id="level15">
-          <div class="main" id="level16">
-          </div>
+      <div class="level15" id="level15">
+        <div class="main" id="level16">
+        </div>
+      </div>
+    </div>
+<div class="cover-box"></div>
+
+    <!-- ==================== Fail page =======================-->
+    <div class="row" id="lose">
+      <div class="header">
+        <h1>Game Name</h1>
+        <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
+      </div>
+      <div class="col-md-12 main welcome">
+        <h1 class="display-1">You lose</h1>
+        <!-- <img src="images/map8.png"> -->
+
+        <div class="brain"></div>
+        <h3>Think you know trivia?</h3>
+      </div>
+    </div>
+
+
+        <!-- ==================== Win page =======================-->
+
+
+      <div class="row" id="win">
+        <div class="header">
+          <h1>Game Name</h1>
+          <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
+        </div>
+        <div class="col-md-12 main welcome">
+          <h1 class="display-1">You win</h1>
+          <!-- <img src="images/map8.png"> -->
+
+          <div class="brain"></div>
+          <h3>Think you know trivia?</h3>
         </div>
       </div>
 
 
-    <!-- ==================== Fail page =======================-->
-    <div class="row border border-info">
-      <div class="col-md-12 main border border-info" id="lose">
-        <h1 class="display-1">You lose</h1>
-      </div>
-    </div>
-    <!-- ==================== Win page =======================-->
 
-    <div class="row border border-info">
-      <div class="col-md-12 main border border-info" id="win">
-        <h1 class="display-1">You win</h1>
-      </div>
-    </div>
-  </div>
+
+
+
+</div>
 </body>
 
 </html>

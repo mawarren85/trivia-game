@@ -32,7 +32,7 @@ category.change(function() {
 -------------------------------------------------------------- */
 
 let difficulty = $("#pick-difficulty");
-let getRadios = $("input:radio");
+let getRadios = $("input[name='answers']");
 let selectedDifficulty;
 
 
