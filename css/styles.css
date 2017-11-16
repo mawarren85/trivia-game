@@ -280,3 +280,35 @@ margin-bottom: 10px;
   position: relative;
   top: 1000px;
 }
+
+/* =============== lose page ==================*/
+.red-text,
+.green-text {
+  font-size: 72px;
+  transform: rotate(-15deg);
+  position: relative;
+  top: -200px;
+  margin: 0;
+  font-weight: 700;
+}
+.green-text {
+  font-size: 90px;
+}
+.game-over-image {
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: contain;
+  background-position: center;
+}
+.loser-text-p, .win-text-p {
+  position: relative;
+  top: -100px;
+  margin-bottom: 0;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.display-1 {
+  color: #fff;
+  font-variant-caps: normal;
+}

@@ -201,14 +201,16 @@
     <div class="row" id="lose">
       <div class="header">
         <h1>Game Name</h1>
-        <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
       </div>
       <div class="col-md-12 main welcome">
-        <h1 class="display-1">You lose</h1>
-        <!-- <img src="images/map8.png"> -->
+        <h1 class="display-1">You lose.</h1>
 
-        <div class="brain"></div>
-        <h3>Think you know trivia?</h3>
+        <div class="game-over-image brain"></div>
+        <h3 class="red-text text-danger display-2">NOT SMART</h3>
+        <h3 class="loser-text-p"></h3>
+        <a href="#setup">
+          <div class="down-arrow rotate"></div>
+        </a>
       </div>
     </div>
 
@@ -219,14 +221,15 @@
       <div class="row" id="win">
         <div class="header">
           <h1>Game Name</h1>
-          <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
         </div>
         <div class="col-md-12 main welcome">
-          <h1 class="display-1">You win</h1>
-          <!-- <img src="images/map8.png"> -->
-
-          <div class="brain"></div>
-          <h3>Think you know trivia?</h3>
+          <h1 class="display-1">You win!</h1>
+          <div class="game-over-image brain"></div>
+          <h3 class="green-text text-success display-2">SMART</h3>
+          <h3 class="win-text-p"></h3>
+          <a href="#setup">
+            <div class="down-arrow rotate"></div>
+          </a>
         </div>
       </div>
 

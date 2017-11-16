@@ -112,9 +112,10 @@ getCorrect.text(`${correctTotal} / 12`);
 getIncorrect.text(`${incorrectTotal} / 3`);
 
 getSubmit.click(function() {
-  let selectedAnswer = $("input:radio:checked").attr("id");
+  let selectedAnswer =
+   $("input[name='answers']:radio:checked").attr("id");
   let currentLevel = "#level";
-
+console.log(selectedAnswer)
   if (!selectedAnswer) {
     alert("Choose an answer");
   } else if (correctTotal === 11) {
@@ -171,21 +172,51 @@ function moveBackward(level) {
 }
 
 function gameOver(result) {
+
   $(".trivia").toggleClass("hidden");
   $('html, body').animate({
     scrollTop: $(result).offset().top
   }, 2000);
+  $(".game-over-image").css("background-image", `url(${selectedAvatarNoQuotes})`);     // set avatar pic on loser page
 
+  if ($(result).attr("id") === "lose") {
+    failTextP ();
+  } else {
+    winTextP();
+  }
 }
 
+function failTextP () {
+  let getLoserTextP = $(".loser-text-p");
+  if ($(getSmartRadio).text() === "Yes") {
+    getLoserTextP.text("I thought you said you were smart.");
+  } else if ($(getSmartRadio).text() === "Maybe") {
+    getLoserTextP.text("Maybe you should have checked 'not smart.'");
+  } else {
+    getLoserTextP.text("At least you knew how smart you were.");
+  }
+}
+
+function winTextP () {
+  let getWinTextP = $(".win-text-p");
+  if ($(getSmartRadio).text() === "Yes") {
+    getWinTextP.text("You were right. You are smart!");
+  } else if ($(getSmartRadio).text() === "Maybe") {
+    getWinTextP.text("You should have said you were smart!");
+  } else {
+    getWinTextP.text("You should be more confident. You are smart!");
+  }
+}
 /* ------------- new player setup ------------ */
 
 let getAvatarContainer = $(".avatar-container > div");
 let getSetupButton = $("#setup-button");
 let getNameDisplay = $("#displayName");
+let getSmartRadio;
 let selectedAvatar;
 let selectedAvatarID;
 let selectedAvatarSrc;
+let selectedAvatarNoQuotes;
 let imgKeys = {
   cartman: "images/cartman.png",
   hipster: "images/hipster.png",
@@ -203,7 +234,7 @@ getAvatarContainer.click(function(event) { // get avatar selected
   selectedAvatarSrc = imgKeys[selectedAvatarID];
   $(".blue").toggleClass("blue");
   $(selectedAvatar).toggleClass("blue");
-
+  selectedAvatarNoQuotes = selectedAvatarSrc.replace(/"/g, "");
 });
 
 getSetupButton.click(function() { // display name on question form
@@ -211,12 +242,18 @@ getSetupButton.click(function() { // display name on question form
   let getName = $("#name");
   let getNameVal = getName.val();
   getNameDisplay.text(`Player: ${getNameVal}`);
+  getSmartRadio = $("input[name='smart']:radio:checked");
+  console.log(getSmartRadio);
 
   $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar"); // put avatar on start page
 
 });
 
-/* ------------- animate ------------ */
+/* ----------------------- fail page ----------------------- */
+
+
+
+/* ----------------------- animate ----------------------- */
 let level2_1 = {
   start: {
     x: 650,
