@@ -6,10 +6,26 @@
 /* fix api call encoding */
 /* way for li elements to not go down to the next line below the radio buttons if the line is too long */
 /* add poop emoji */
+/* ------------- audio files ------------ */
+$(".container-fluid").append("<audio>");
+$(".container-fluid > audio").attr("class", "move-up-sound");
+$(".move-up-sound").append("<source>");
+$(".move-up-sound > source").attr("src", "sounds/move-up.wav");
 
+$("<audio>").insertAfter(".move-up-sound");
+$(".move-up-sound").next().attr("class", "win-sound");
+$(".win-sound").append("<source>");
+$(".win-sound > source").attr("src", "sounds/win-sound.wav");
 
+$("<audio>").insertAfter(".win-sound");
+$(".win-sound").next().attr("class", "lose-sound");
+$(".lose-sound").append("<source>");
+$(".lose-sound > source").attr("src", "sounds/lose-sound.wav");
 
-
+$("<audio>").insertAfter(".lose-sound");
+$(".lose-sound").next().attr("class", "move-back-sound");
+$(".move-back-sound").append("<source>");
+$(".move-back-sound > source").attr("src", "sounds/move-back-sound.wav");
 
 /* ------------- smooth scroll to link ------------ */
 
@@ -67,8 +83,7 @@ getSetupButton.click(function() { // display name on question form
   let getNameVal = getName.val();
   getNameDisplay.text(`Player: ${getNameVal}`);
   getSmartRadio = $("input[name='smart']:radio:checked");
-console.log($(getSmartRadio).attr("id"));
-  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar");     // put avatar on start page
+  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar"); // put avatar on start page
 
 });
 
@@ -115,9 +130,10 @@ shuffle the new array
 let radioID;
 let correctAnswer;
 
-function askQuestion(result) {
 
-  let setQuestion = $("#question").text(result["results"]["0"]["question"]);
+function askQuestion(result) {
+  let question = result["results"]["0"]["question"];
+  decodeQuestion(question);
   let wrongAnswers = result["results"]["0"]["incorrect_answers"];
   correctAnswer = result["results"]["0"]["correct_answer"];
   let answers = [];
@@ -127,7 +143,7 @@ function askQuestion(result) {
   for (let i = 0; i < wrongAnswers.length; i++) {
     answers.push(wrongAnswers[i]);
   }
-
+  decodeHtml(answers);
   shuffleArray(answers);
 
   for (let i = 0; i < getRadios.length; i++) {
@@ -143,13 +159,82 @@ function askQuestion(result) {
 
 function shuffleArray(answers) {
   for (let i = answers.length - 1; i > 0; i--) {
+    //console.log(answers[i], "answers i")
     let j = Math.floor(Math.random() * (i + 1));
     let temp = answers[i];
     answers[i] = answers[j];
     answers[j] = temp;
+
   }
   return answers;
 }
+
+function decodeHtml(answers) {
+  let reDoubleQuote = /&quot;/gi;
+  let reSingleQuote = /&#039;/gi;
+  let reAmpersand = /&amp;/gi;
+  let reSingleQuote2 = /&prime;/gi;
+  let reSingleQuote3 = /&rsquo;/gi;
+  let reEcoute = /&eacute;/gi;
+  let reLessThan = /&lt;/gi;
+  let reGreaterThan = /&gt;/gi;
+
+  for (let i = 0; i < answers.length; i++) {
+    if (reDoubleQuote.test(answers[i])) {
+      answers[i] = answers[i].replace(reDoubleQuote, '"');
+    } else if (reSingleQuote.test(answers[i])) {
+      answers[i] = answers[i].replace(reSingleQuote, "'");
+    } else if (reAmpersand.test(answers[i])) {
+      answers[i] = answers[i].replace(reAmpersand, "&");
+    } else if (reSingleQuote2.test(answers[i])) {
+      answers[i] = answers[i].replace(reSingleQuote2, "'");
+    } else if (reSingleQuote3.test(answers[i])) {
+      answers[i] = answers[i].replace(reSingleQuote3, "'");
+    } else if (reEcoute.test(answers[i])) {
+      answers[i] = answers[i].replace(reEcoute, "e");
+    } else if (reLessThan.test(answers[i])) {
+      answers[i] = answers[i].replace(reLessThan, "<");
+    } else if (reGreaterThan.test(answers[i])) {
+      answers[i] = answers[i].replace(reGreaterThan, ">");
+    } else {
+      answers[i] = answers[i];
+    }
+  }
+  return answers;
+}
+
+  function decodeQuestion(question) {
+    let reDoubleQuote = /&quot;/gi;
+    let reSingleQuote = /&#039;/gi;
+    let reAmpersand = /&amp;/gi;
+    let reSingleQuote2 = /&prime;/gi;
+    let reSingleQuote3 = /&rsquo;/gi;
+    let reEcoute = /&eacute;/gi;
+    let reLessThan = /&lt;/gi;
+    let reGreaterThan = /&gt;/gi;
+
+    if (reDoubleQuote.test(question)) {
+      question = question.replace(reDoubleQuote, '"');
+    } else if (reSingleQuote.test(question)) {
+      question = question.replace(reSingleQuote, "'");
+    } else if (reAmpersand.test(question)) {
+      question = question.replace(reAmpersand, "&");
+    } else if (reSingleQuote2.test(question)) {
+      question = question.replace(reSingleQuote2, "'");
+    } else if (reSingleQuote3.test(question)) {
+      question = question.replace(reSingleQuote3, "'");
+    } else if (reEcoute.test(question)) {
+      question = question.replace(reEcoute, "e");
+    } else if (reLessThan.test(question)) {
+      question = question.replace(reLessThan, "<");
+    } else if (reGreaterThan.test(question)) {
+      question = question.replace(reGreaterThan, ">");
+    } else {
+      question = question;
+    }
+  let setQuestion = $("#question").text(question);
+  return question;
+  }
 
 /* -----------------------------------------------------------
 --once submit is clicked check if answer is correct
@@ -167,7 +252,7 @@ getIncorrect.text(`${incorrectTotal} / 3`);
 
 getSubmit.click(function() {
   let selectedAnswer =
-   $("input[name='answers']:radio:checked").attr("id");
+    $("input[name='answers']:radio:checked").attr("id");
   let currentLevel = "#level";
 
   if (!selectedAnswer) {
@@ -195,6 +280,7 @@ getSubmit.click(function() {
 
 function moveForward(level) {
   moveAvatarForward(level);
+  $(".move-up-sound")[0].play();
 
   $('html, body').animate({
     scrollTop: $(level).offset().top
@@ -212,7 +298,9 @@ function moveBackward(level) {
     gameOver($("#lose"));
   } else if (level === $(getLevel1)) {
     level = $(getLevel1);
+    $(".move-back-sound")[0].play();
   } else {
+    $(".move-back-sound")[0].play();
     moveAvatarBackward(level);
     $('html, body').animate({
       scrollTop: $(level).offset().top
@@ -232,16 +320,18 @@ function gameOver(result) {
   $('html, body').animate({
     scrollTop: $(result).offset().top
   }, 2000);
-  $(".game-over-image").css("background-image", `url(${selectedAvatarNoQuotes})`);     // set avatar pic on loser page
+  $(".game-over-image").css("background-image", `url(${selectedAvatarNoQuotes})`); // set avatar pic on loser page
 
   if ($(result).attr("id") === "lose") {
-    failTextP ();
+    $(".lose-sound")[0].play();
+    failTextP();
   } else {
+    $(".win-sound")[0].play();
     winTextP();
   }
 }
 
-function failTextP () {
+function failTextP() {
   let getLoserTextP = $(".loser-text-p");
   if ($(getSmartRadio).attr("id") === "yes-smart") {
     getLoserTextP.text("I thought you said you were smart.");
@@ -252,7 +342,7 @@ function failTextP () {
   }
 }
 
-function winTextP () {
+function winTextP() {
   console.log($(getSmartRadio).text());
   let getWinTextP = $(".win-text-p");
   if ($(getSmartRadio).attr("id") === "yes-smart") {
@@ -265,24 +355,24 @@ function winTextP () {
 }
 
 /* ----------------------- reset trivia form ----------------------- */
-$(".rotate").click(function () {
+$(".rotate").click(function() {
 
-    $(getRadios).toggleClass("hidden");
-    $(getRadios).next().empty();
-    $(getSubmit).toggleClass("hidden");
-    $(selectedAvatar).toggleClass("blue");
-    $(getName).val(" ");
-    $("#question").empty();
-    $(getNameDisplay).empty();
-    $(getNameDisplay).text("Player:");
-    $("#avatar-start").empty();
-    $(getSmartRadio).attr("checked", false);
-    $(category).val("1");
-    $(difficulty).val("difficulty");
-    correctTotal = 0;
-    incorrectTotal = 0;
-    getCorrect.text(`${correctTotal} / 12`);
-    getIncorrect.text(`${incorrectTotal} / 3`);
+  $(getRadios).toggleClass("hidden");
+  $(getRadios).next().empty();
+  $(getSubmit).toggleClass("hidden");
+  $(selectedAvatar).toggleClass("blue");
+  $(getName).val(" ");
+  $("#question").empty();
+  $(getNameDisplay).empty();
+  $(getNameDisplay).text("Player:");
+  $("#avatar-start").empty();
+  $(getSmartRadio).attr("checked", false);
+  $(category).val("1");
+  $(difficulty).val("difficulty");
+  correctTotal = 0;
+  incorrectTotal = 0;
+  getCorrect.text(`${correctTotal} / 12`);
+  getIncorrect.text(`${incorrectTotal} / 3`);
 
 });
 
