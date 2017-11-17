@@ -1039,10 +1039,22 @@ let returnToLevel10 = {
     length: 0.340
   }
 };
+//
+// let danceAvatar = setInterval(function () {
+//   startDance();
+// }, 100);
+
+var danceFunction = function startDance () {
+  let dance = setInterval(function () {
+    $("#avatar-start > img").toggleClass("dance");
+  }, 150);
+  setTimeout(function() {clearInterval(dance);}, 5000);
+};
 
 function moveAvatarForward(level) {
 
   if ($(level).attr("id") === "level2") {
+        danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level2_1)
     }, 2500, "linear", function() {
@@ -1054,7 +1066,9 @@ function moveAvatarForward(level) {
         }, 2500, "linear");
       });
     });
+
   } else if ($(level).attr("id") === "level3") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level3_1)
     }, 1200, "linear", function() {
@@ -1075,6 +1089,7 @@ function moveAvatarForward(level) {
       });
     });
   } else if ($(level).attr("id") === "level4") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level4_1)
     }, 1500, "linear", function() {
@@ -1083,6 +1098,7 @@ function moveAvatarForward(level) {
       }, 2000, "linear");
     });
   } else if ($(level).attr("id") === "level5") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level5_1)
     }, 1000, "linear", function() {
@@ -1103,6 +1119,7 @@ function moveAvatarForward(level) {
       });
     });
   } else if ($(level).attr("id") === "level6") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level6_1)
     }, 1000, "linear", function() {
@@ -1111,6 +1128,7 @@ function moveAvatarForward(level) {
       }, 1500, "linear");
     });
   } else if ($(level).attr("id") === "level7") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level7_1)
     }, 500, "linear", function() {
@@ -1131,6 +1149,7 @@ function moveAvatarForward(level) {
       });
     });
   } else if ($(level).attr("id") === "level8") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level8_1)
     }, 1000, "linear", function() {
@@ -1143,6 +1162,7 @@ function moveAvatarForward(level) {
       });
     });
   } else if ($(level).attr("id") === "level9") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level9_1)
     }, 1000, "linear", function() {
@@ -1159,6 +1179,7 @@ function moveAvatarForward(level) {
       });
     });
   } else if ($(level).attr("id") === "level10") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level10_1)
     }, 1500, "linear", function() {
@@ -1167,6 +1188,7 @@ function moveAvatarForward(level) {
       }, 2500, "linear");
     });
   } else if ($(level).attr("id") === "level11") {
+    danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level11_1)
     }, 1500, "linear", function() {
@@ -1183,6 +1205,7 @@ function moveAvatarForward(level) {
       });
     });
   } else {
+      danceFunction();
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level12_1)
     }, 1000, "linear", function() {
