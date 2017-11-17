@@ -1,11 +1,5 @@
 /* jshint esversion:6 */
 
-
-
-
-/* fix api call encoding */
-/* way for li elements to not go down to the next line below the radio buttons if the line is too long */
-/* add poop emoji */
 /* ------------- audio files ------------ */
 $(".container-fluid").append("<audio>");
 $(".container-fluid > audio").attr("class", "move-up-sound");
@@ -36,18 +30,10 @@ $(document).on('click', 'a[href^="#"]', function(event) {
     scrollTop: $($.attr(this, 'href')).offset().top
   }, 2000);
 });
-/*  only let the choose event happen once per page so you cant change questions repeatedly */
-
-/* variable to keep track of point total */
-
-/* have a variable that keeps track of right answers out of total questions*/
-let correctTotal = 0;
-/* have a variable that keeps track of wrong answers out of 3  */
-let incorrectTotal = 0;
-/* if at any time a player gets three questions wrong...he is taken to the loser screen */
 
 /* ------------- new player setup ------------ */
-
+let correctTotal = 0;
+let incorrectTotal = 0;
 let getAvatarContainer = $(".avatar-container > div");
 let getSetupButton = $("#setup-button");
 let getNameDisplay = $("#displayName");
@@ -68,7 +54,7 @@ let imgKeys = {
   garfield: "images/garfield.png"
 };
 
-getAvatarContainer.click(function(event) { // get avatar selected
+getAvatarContainer.click(function(event) {    // get avatar selected
   selectedAvatar = event.target;
   selectedAvatarID = $(selectedAvatar).attr("id");
   selectedAvatarSrc = imgKeys[selectedAvatarID];
@@ -77,14 +63,13 @@ getAvatarContainer.click(function(event) { // get avatar selected
   selectedAvatarNoQuotes = selectedAvatarSrc.replace(/"/g, "");
 });
 
-getSetupButton.click(function() { // display name on question form
+getSetupButton.click(function() {    // display name on question form
   event.preventDefault();
   getName = $("#name");
   let getNameVal = getName.val();
   getNameDisplay.text(`Player: ${getNameVal}`);
   getSmartRadio = $("input[name='smart']:radio:checked");
-  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar"); // put avatar on start page
-
+  $("#avatar-start").append(`<img src=${selectedAvatarSrc}>`).attr("class", "avatar");    // put avatar on start page
 });
 
 /* ------------- keep track of category selected ------------ */
@@ -103,8 +88,6 @@ category.change(function() {
 let difficulty = $("#pick-difficulty");
 let getRadios = $("input[name='answers']");
 let selectedDifficulty;
-
-
 let difficultyChange = difficulty.change(function() {
   selectedDifficulty = difficulty.val();
 
@@ -129,7 +112,6 @@ shuffle the new array
 -------------------------------------------------------------- */
 let radioID;
 let correctAnswer;
-
 
 function askQuestion(result) {
   let question = result["results"]["0"]["question"];
@@ -164,7 +146,6 @@ function shuffleArray(answers) {
     let temp = answers[i];
     answers[i] = answers[j];
     answers[j] = temp;
-
   }
   return answers;
 }
@@ -175,66 +156,92 @@ function decodeHtml(answers) {
   let reAmpersand = /&amp;/gi;
   let reSingleQuote2 = /&prime;/gi;
   let reSingleQuote3 = /&rsquo;/gi;
+  let reSingleQuote4 = /&ldquo;/gi;
   let reEcoute = /&eacute;/gi;
   let reLessThan = /&lt;/gi;
   let reGreaterThan = /&gt;/gi;
+  let reGrave = /&euml;/g;
 
   for (let i = 0; i < answers.length; i++) {
     if (reDoubleQuote.test(answers[i])) {
       answers[i] = answers[i].replace(reDoubleQuote, '"');
-    } else if (reSingleQuote.test(answers[i])) {
+    }
+    if (reSingleQuote.test(answers[i])) {
       answers[i] = answers[i].replace(reSingleQuote, "'");
-    } else if (reAmpersand.test(answers[i])) {
+    }
+    if (reAmpersand.test(answers[i])) {
       answers[i] = answers[i].replace(reAmpersand, "&");
-    } else if (reSingleQuote2.test(answers[i])) {
+    }
+    if (reSingleQuote2.test(answers[i])) {
       answers[i] = answers[i].replace(reSingleQuote2, "'");
-    } else if (reSingleQuote3.test(answers[i])) {
+    }
+    if (reSingleQuote3.test(answers[i])) {
       answers[i] = answers[i].replace(reSingleQuote3, "'");
-    } else if (reEcoute.test(answers[i])) {
+    }
+    if (reEcoute.test(answers[i])) {
       answers[i] = answers[i].replace(reEcoute, "e");
-    } else if (reLessThan.test(answers[i])) {
+    }
+    if (reLessThan.test(answers[i])) {
       answers[i] = answers[i].replace(reLessThan, "<");
-    } else if (reGreaterThan.test(answers[i])) {
+    }
+    if (reGreaterThan.test(answers[i])) {
       answers[i] = answers[i].replace(reGreaterThan, ">");
-    } else {
-      answers[i] = answers[i];
+    }
+    if (reSingleQuote4.test(answers[i])) {
+      answers[i] = answers[i].replace(reSingleQuote4, "`");
+    }
+    if (reGrave.test(answers[i])) {
+      answers[i] = answers[i].replace(reGrave, "e");
     }
   }
   return answers;
 }
 
-  function decodeQuestion(question) {
-    let reDoubleQuote = /&quot;/gi;
-    let reSingleQuote = /&#039;/gi;
-    let reAmpersand = /&amp;/gi;
-    let reSingleQuote2 = /&prime;/gi;
-    let reSingleQuote3 = /&rsquo;/gi;
-    let reEcoute = /&eacute;/gi;
-    let reLessThan = /&lt;/gi;
-    let reGreaterThan = /&gt;/gi;
+function decodeQuestion(question) {
+  let reDoubleQuote = /&quot;/gi;
+  let reSingleQuote = /&#039;/g;
+  let reAmpersand = /&amp;/gi;
+  let reSingleQuote2 = /&prime;/gi;
+  let reSingleQuote3 = /&rsquo;/gi;
+  let reSingleQuote4 = /&ldquo;/gi;
+  let reEcoute = /&eacute;/gi;
+  let reLessThan = /&lt;/g;
+  let reGreaterThan = /&gt;/g;
+  let reGrave = /&euml;/g;
 
-    if (reDoubleQuote.test(question)) {
-      question = question.replace(reDoubleQuote, '"');
-    } else if (reSingleQuote.test(question)) {
-      question = question.replace(reSingleQuote, "'");
-    } else if (reAmpersand.test(question)) {
-      question = question.replace(reAmpersand, "&");
-    } else if (reSingleQuote2.test(question)) {
-      question = question.replace(reSingleQuote2, "'");
-    } else if (reSingleQuote3.test(question)) {
-      question = question.replace(reSingleQuote3, "'");
-    } else if (reEcoute.test(question)) {
-      question = question.replace(reEcoute, "e");
-    } else if (reLessThan.test(question)) {
-      question = question.replace(reLessThan, "<");
-    } else if (reGreaterThan.test(question)) {
-      question = question.replace(reGreaterThan, ">");
-    } else {
-      question = question;
-    }
+  if (reDoubleQuote.test(question)) {
+    question = question.replace(reDoubleQuote, '"');
+  }
+  if (reSingleQuote.test(question)) {
+    question = question.replace(reSingleQuote, "'");
+  }
+  if (reAmpersand.test(question)) {
+    question = question.replace(reAmpersand, "&");
+  }
+  if (reSingleQuote2.test(question)) {
+    question = question.replace(reSingleQuote2, "'");
+  }
+  if (reSingleQuote3.test(question)) {
+    question = question.replace(reSingleQuote3, "'");
+  }
+  if (reEcoute.test(question)) {
+    question = question.replace(reEcoute, "e");
+  }
+  if (reLessThan.test(question)) {
+    question = question.replace(reLessThan, "<");
+  }
+  if (reGreaterThan.test(question)) {
+    question = question.replace(reGreaterThan, ">");
+  }
+  if (reSingleQuote4.test(question)) {
+    question = question.replace(reSingleQuote4, "`");
+  }
+  if (reGrave.test(question)) {
+    question = question.replace(reGrave, "e");
+}
   let setQuestion = $("#question").text(question);
   return question;
-  }
+}
 
 /* -----------------------------------------------------------
 --once submit is clicked check if answer is correct
@@ -262,7 +269,7 @@ getSubmit.click(function() {
   } else if ($(`label[for=${selectedAnswer}]`).text() === correctAnswer) {
     correctTotal++;
     levelCount++;
-    getCorrect.text(`${correctTotal} / 12`); // display correct answer total
+    getCorrect.text(`${correctTotal} / 12`);   // display correct answer total
     currentLevel = $(`${currentLevel}${levelCount}`);
     moveForward(currentLevel);
   } else {
@@ -271,7 +278,7 @@ getSubmit.click(function() {
     if (levelCount === 0) {
       levelCount++;
     }
-    getIncorrect.text(`${incorrectTotal} / 3`); // display incorrect total
+    getIncorrect.text(`${incorrectTotal} / 3`);     // display incorrect total
     currentLevel = $(`${currentLevel}${levelCount}`);
     moveBackward(currentLevel);
   }
@@ -284,7 +291,7 @@ function moveForward(level) {
 
   $('html, body').animate({
     scrollTop: $(level).offset().top
-  }, 5000); // originally set at 2000...set back!
+  }, 5000);
   $.ajax({
     url: `https://opentdb.com/api.php?amount=1&category=${selectedCategory}&difficulty=${selectedDifficulty}&type=multiple`,
     success: function(data) {
@@ -315,8 +322,6 @@ function moveBackward(level) {
 }
 
 function gameOver(result) {
-
-  $(".trivia").toggleClass("hidden");
   $('html, body').animate({
     scrollTop: $(result).offset().top
   }, 2000);
@@ -343,7 +348,6 @@ function failTextP() {
 }
 
 function winTextP() {
-  console.log($(getSmartRadio).text());
   let getWinTextP = $(".win-text-p");
   if ($(getSmartRadio).attr("id") === "yes-smart") {
     getWinTextP.text("You were right. You are smart!");
@@ -355,8 +359,8 @@ function winTextP() {
 }
 
 /* ----------------------- reset trivia form ----------------------- */
-$(".rotate").click(function() {
 
+$(".rotate").click(function() {
   $(getRadios).toggleClass("hidden");
   $(getRadios).next().empty();
   $(getSubmit).toggleClass("hidden");
@@ -373,7 +377,6 @@ $(".rotate").click(function() {
   incorrectTotal = 0;
   getCorrect.text(`${correctTotal} / 12`);
   getIncorrect.text(`${incorrectTotal} / 3`);
-
 });
 
 
@@ -620,14 +623,14 @@ let level7_1 = {
   start: {
     x: 360,
     y: 6970,
-    angle: 269.631,
-    length: 0.986
+    angle: 190.631,
+    length: 0.286
   },
   end: {
     x: 360,
     y: 7450,
     angle: 58.263,
-    length: 0.840
+    length: 0.240
   }
 };
 let level7_2 = {
@@ -898,8 +901,8 @@ let level12_2 = {
 };
 let returnToLevel1 = {
   start: {
-    x: 470,
-    y: 1500,
+    x: 650,
+    y: 550,
     angle: 7.931,
     length: 0.886
   },
@@ -1042,31 +1045,31 @@ function moveAvatarForward(level) {
   if ($(level).attr("id") === "level2") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level2_1)
-    }, 1500, "linear", function() {
+    }, 2500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level2_2)
-      }, 1500, "linear", function() {
+      }, 2500, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level2_3)
-        }, 1500, "linear");
+        }, 2500, "linear");
       });
     });
   } else if ($(level).attr("id") === "level3") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level3_1)
-    }, 1000, "linear", function() {
+    }, 1200, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level3_2)
-      }, 1000, "linear", function() {
+      }, 900, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level3_3)
         }, 1000, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level3_4)
-          }, 1000, "linear", function() {
+          }, 500, "linear", function() {
             $("#avatar-start > img").animate({
               path: new $.path.bezier(level3_5)
-            }, 1500, "linear");
+            }, 500, "linear");
           });
         });
       });
@@ -1077,18 +1080,18 @@ function moveAvatarForward(level) {
     }, 1500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level4_2)
-      }, 1500, "linear");
+      }, 2000, "linear");
     });
   } else if ($(level).attr("id") === "level5") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level5_1)
-    }, 1500, "linear", function() {
+    }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level5_2)
-      }, 200, "linear", function() {
+      }, 500, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level5_3)
-        }, 200, "linear", function() {
+        }, 500, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level5_4)
           }, 1000, "linear", function() {
@@ -1133,10 +1136,10 @@ function moveAvatarForward(level) {
     }, 1000, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level8_2)
-      }, 1000, "linear", function() {
+      }, 2000, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level8_3)
-        }, 1000, "linear");
+        }, 2000, "linear");
       });
     });
   } else if ($(level).attr("id") === "level9") {
@@ -1148,20 +1151,20 @@ function moveAvatarForward(level) {
       }, 1000, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level9_3)
-        }, 1000, "linear", function() {
+        }, 1500, "linear", function() {
           $("#avatar-start > img").animate({
             path: new $.path.bezier(level9_4)
-          }, 1000, "linear");
+          }, 1500, "linear");
         });
       });
     });
   } else if ($(level).attr("id") === "level10") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(level10_1)
-    }, 1000, "linear", function() {
+    }, 1500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level10_2)
-      }, 1500, "linear");
+      }, 2500, "linear");
     });
   } else if ($(level).attr("id") === "level11") {
     $("#avatar-start > img").animate({
@@ -1169,7 +1172,7 @@ function moveAvatarForward(level) {
     }, 1500, "linear", function() {
       $("#avatar-start > img").animate({
         path: new $.path.bezier(level11_2)
-      }, 1500, "linear", function() {
+      }, 500, "linear", function() {
         $("#avatar-start > img").animate({
           path: new $.path.bezier(level11_3)
         }, 1000, "linear", function() {
@@ -1191,57 +1194,46 @@ function moveAvatarForward(level) {
 }
 
 function moveAvatarBackward(level) {
-  console.log(level);
+
   if ($(level).attr("id") === "level1") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel1)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level2") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel2)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level3") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel3)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level4") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel4)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level5") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel5)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level6") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel6)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level7") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel7)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level8") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel8)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else if ($(level).attr("id") === "level9") {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel9)
-    }, 1000, "linear");
+    }, 2000, "linear");
   } else {
     $("#avatar-start > img").animate({
       path: new $.path.bezier(returnToLevel10)
-    }, 1000, "linear");
+    }, 2000, "linear");
   }
 }
-
-
-
-
-
-
-
-
-/* have a way to store player avatar and scores */
-
-/* move avatar around the board */

@@ -19,32 +19,23 @@
 </head>
 
 <body>
+
   <!-- ========================= Main page =======================-->
+
   <div class="container-fluid">
     <div class="row">
       <div class="header">
-        <h1>Game Name</h1>
-        <!-- <a href="#setup"><button name="newPlayer" id="new" class="player-setup-button btn btn-lg btn-info">Player Setup</button></a> -->
+        <h1>BrainQuery</h1>
       </div>
       <div class="col-md-12 main welcome">
-
-        <!-- <img src="images/map8.png"> -->
-
         <div class="brain"></div>
         <h3>Think you know trivia?</h3>
-
         <p class="col-md-9 text-center">Test your knowledge! Pick your favorite category and then choose a difficulty level to begin. If you get the question correct, you will be taken on a journey across different lands that will move you closer to victory and attaining bragging rights.
         </p>
         <p class="col-md-9 text-center">But watch out, answering a question incorrectly moves you back a level, and three incorrect answers result in your shame and cause the game to end. Click the arrow below and head on down to the player setup page to get started. </p>
         <a href="#setup">
           <div class="down-arrow"></div>
         </a>
-
-
-        <!-- <a href="#start"><button name="play" class="btn btn-lg btn-info">Start Game</button></a> -->
-
-
-
       </div>
     </div>
 
@@ -52,7 +43,7 @@
 
     <div class="row" id="setup">
       <div class="header">
-        <h1>Game Name</h1>
+        <h1>BrainQuery</h1>
         <h2>Player Setup</h2></div>
       <div class="main welcome">
 
@@ -85,12 +76,10 @@
             <a href="#start"><button name="done" class="btn btn-lg btn-info" id="setup-button">Done</button></a>
           </form>
         </div>
-        <!-- <button name="play" class="btn btn-lg btn-info">Start Game</button></a> -->
       </div>
     </div>
 
     <!-- ==================== Trivia Form =======================-->
-
 
     <form class="trivia">
       <fieldset>
@@ -155,10 +144,9 @@
       </div>
     </form>
 
-
     <!-- ==================== Level pages =======================-->
 
-
+    <div class="cover-block"></div>
     <div class="land" id="start">
       <div id="avatar-start" class="avatar"></div>
 
@@ -195,16 +183,15 @@
         </div>
       </div>
     </div>
-<div class="cover-box"></div>
+    <div class="cover-box"></div>
 
     <!-- ==================== Fail page =======================-->
     <div class="row" id="lose">
       <div class="header">
-        <h1>Game Name</h1>
+        <h1>BrainQuery</h1>
       </div>
       <div class="col-md-12 main welcome">
         <h1 class="display-1">You lose.</h1>
-
         <div class="game-over-image brain"></div>
         <h3 class="red-text text-danger display-2">NOT SMART</h3>
         <h3 class="loser-text-p"></h3>
@@ -214,26 +201,23 @@
       </div>
     </div>
 
+    <!-- ==================== Win page =======================-->
 
-        <!-- ==================== Win page =======================-->
-
-
-      <div class="row" id="win">
-        <div class="header">
-          <h1>Game Name</h1>
-        </div>
-        <div class="col-md-12 main welcome">
-          <h1 class="display-1">You win!</h1>
-          <div class="game-over-image brain"></div>
-          <h3 class="green-text text-success display-2">SMART</h3>
-          <h3 class="win-text-p"></h3>
-          <a href="#setup">
-            <div class="down-arrow rotate"></div>
-          </a>
-        </div>
+    <div class="row" id="win">
+      <div class="header">
+        <h1>BrainQuery</h1>
       </div>
-
-</div>
+      <div class="col-md-12 main welcome">
+        <h1 class="display-1">You win!</h1>
+        <div class="game-over-image brain"></div>
+        <h3 class="green-text text-success display-2">SMART</h3>
+        <h3 class="win-text-p"></h3>
+        <a href="#setup">
+          <div class="down-arrow rotate"></div>
+        </a>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

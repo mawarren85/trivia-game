@@ -3,15 +3,18 @@
   height: auto;
   margin: 0 auto;
 }
+
 body {
-    background-color: #264B56;
-    color: #264B56;
+  background-color: #264B56;
+  color: #264B56;
 }
+
 .main {
   text-align: center;
   height: 1200px;
   padding: 0 150px;
 }
+
 .welcome {
   background-color: #264B56;
   width: 100%;
@@ -19,6 +22,9 @@ body {
   margin: 0 auto 30px auto;
   padding-top: 15px;
 }
+
+/* =============== headers/text elements ==================*/
+
 .header {
   width: 100%;
   height: 100px;
@@ -29,7 +35,7 @@ body {
   z-index: 10;
   margin-bottom: 10px;
 }
-/* =============== headers/text elements ==================*/
+
 .brain {
   background-image: url("../images/brain.jpg");
   background-size: contain;
@@ -42,6 +48,7 @@ body {
   z-index: 100;
   box-shadow: 0 1px 10px 1px #000;
 }
+
 .down-arrow {
   background-image: url("../images/bluearrow.png");
   background-size: contain;
@@ -51,12 +58,15 @@ body {
   margin: 0 auto;
   position: relative;
   top: 5px;
-  transition-property: top; box-shadow;
+  transition-property: top;
+  box-shadow;
   transition-duration: .3s;
 }
+
 .down-arrow:hover {
   top: 10px;
 }
+
 h1 {
   color: #162328;
   display: inline-block;
@@ -66,18 +76,21 @@ h1 {
   text-align: center;
   font-variant-caps: all-petite-caps;
 }
+
 h2 {
   display: inline-block;
   margin: 40px 0;
   color: #fff;
   font-weight: 300;
 }
+
 h3 {
   color: #81BF69;
   font-weight: 200;
   font-size: 40px;
 }
-.welcome > p {
+
+.welcome>p {
   margin-left: auto;
   margin-right: auto;
   color: #fff;
@@ -96,6 +109,7 @@ h3 {
   height: 475px;
   border: 4px solid #49a0b5;
 }
+
 .avatar {
   height: 75px;
   width: 75px;
@@ -104,41 +118,52 @@ h3 {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .cartman {
   background-image: url("../images/cartman.png");
 }
+
 .hipster {
   background-image: url("../images/hipster.png");
 }
+
 .lisa {
   background-image: url("../images/lisa.png");
 }
+
 .spongebob {
   background-image: url("../images/spongebob.png");
 }
+
 .brian {
   background-image: url("../images/brian.jpg");
 }
+
 .yoda {
   background-image: url("../images/yoda.gif");
 }
+
 .gosling {
   background-image: url("../images/gosling.png");
 }
+
 .garfield {
   background-image: url("../images/garfield.png");
 }
+
 .blue {
   border: 1px solid #264B56;
   border-radius: 5px;
 }
-#avatar-start > img {
+
+#avatar-start>img {
   height: 75px;
   position: relative;
   left: 550px;
   top: 650px;
-  z-index: 200;
+  z-index: 100;
 }
+
 .avatar-container {
   width: 600px;
   height: 95px;
@@ -149,23 +174,27 @@ h3 {
   border-radius: 5px;
   margin-bottom: 30px;
 }
+
 .label-title {
   margin-right: 20px;
 }
 
-.player-setup > h3 {
+.player-setup>h3 {
   margin-bottom: 50px;
   color: #264B56;
 }
+
 .smart-radio {
   margin-right: 10px;
   margin-left: 15px;
 }
+
 #name {
   width: 250px;
   border: 1px solid #81BF69;
   border-radius: 5px;
 }
+
 /* =============== trivia form styling ==================*/
 
 .trivia {
@@ -175,59 +204,81 @@ h3 {
   padding: 15px;
   width: 315px;
   background-color: white;
-  z-index: 100;
+  z-index: 200;
   box-shadow: 0 2px 20px 1px #000;
   border-radius: 20px;
   border: 3px solid #49a0b5;
+  overflow: auto;
 }
-fieldset > h4 {
-margin-bottom: 10px;
+
+fieldset>h4 {
+  margin-bottom: 10px;
 }
+
 .label-title-sm {
   margin-right: 7px;
 }
+
 .hidden {
   display: none;
 }
+
 .trivia-question {
   color: #81BF69;
   font-weight: 400;
   margin-left: 10px;
 }
-.correct,
-.incorrect {
+
+.correct, .incorrect {
   list-style: none;
   display: inline-block;
 }
+
 .correct {
   margin-left: 10px;
   margin-right: 70px;
   color: #81BF69;
 }
+
 .incorrect {
   color: crimson;
 }
-.score > ul {
+
+.score>ul {
   margin-bottom: 0;
 }
-.score > p {
+
+.score>p {
   margin-bottom: 0;
 }
+
 .score {
   border-top: 1px solid #264B56;
 }
+
 #submit {
   margin: 5px 0 20px 0;
 }
+
 /* =============== levels ==================*/
 
 .land {
   width: 800px;
-  height: 20422px;          /*22000px;*/
+  height: 20422px;
   background-color: #264B56;
   margin: 0 auto;
   box-shadow: 0 0 15px black;
 }
+
+.cover-block {
+  width: 900px;
+  height: 300px;
+  background-color: #264B56;
+  position: relative;
+  margin: 0 auto;
+  top: 110px;
+}
+
 .cover-box {
   width: 800px;
   height: 300px;
@@ -235,6 +286,7 @@ margin-bottom: 10px;
   position: relative;
   margin: 0 auto;
 }
+
 .level1, .level3, .level5, .level7, .level9, .level11, .level13 {
   background-repeat: no-repeat;
   background-position: center;
@@ -246,32 +298,38 @@ margin-bottom: 10px;
 
 .level1 {
   background-image: url("../images/longmap1.png");
-
 }
+
 .level3 {
   background-image: url("../images/longmap2.png");
   top: -145px;
 }
+
 .level5 {
   background-image: url("../images/longmap3.png");
   top: -185px;
 }
+
 .level7 {
   background-image: url("../images/longmap4.png");
   top: -240px;
 }
+
 .level9 {
   background-image: url("../images/longmap5.png");
   top: -280px;
 }
+
 .level11 {
   background-image: url("../images/longmap6.png");
   top: -340px;
 }
+
 .level13 {
   background-image: url("../images/longmap7.png");
   top: -518px;
 }
+
 #level2, #level4, #level6, #level8, #level10, #level12, #level14, #level16 {
   width: 900px;
   position: relative;
@@ -279,8 +337,8 @@ margin-bottom: 10px;
 }
 
 /* =============== lose page ==================*/
-.red-text,
-.green-text {
+
+.red-text, .green-text {
   font-size: 72px;
   transform: rotate(-15deg);
   position: relative;
@@ -288,23 +346,28 @@ margin-bottom: 10px;
   margin: 0;
   font-weight: 700;
 }
+
 .green-text {
   font-size: 90px;
 }
+
 .game-over-image {
   background-repeat: no-repeat;
   background-color: #fff;
   background-size: contain;
   background-position: center;
 }
+
 .loser-text-p, .win-text-p {
   position: relative;
   top: -100px;
   margin-bottom: 0;
 }
+
 .rotate {
   transform: rotate(180deg);
 }
+
 .display-1 {
   color: #fff;
   font-variant-caps: normal;
